@@ -48,7 +48,7 @@ timeStamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d%H%M%S'
 logFileName = "templog-continuous"
 #Live Log Path is the ip address and port where the temp_WebServer.py is running.
 #Live Log Path is in the format http://127.0.0.1:8000/tempMonitor?"
-liveLogPath = "http://sever.host.com:8080/tempMonitor?"
+liveLogPath = "http://server.host.com:8080/tempMonitor?"
 
 redLed = Led(23)
 redLed.ledOff()

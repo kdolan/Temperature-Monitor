@@ -1,8 +1,10 @@
 Temperature Monitor
 =============
 
+Temperature monitoring system that logs temperatures to PostgreSQL database at user specified interval. 
+
 This repo uses a raspberry pi and Ds18b20 temperature sensors to log temperatures to 
-a postgreSQL database and then output that data to a webpage. The data is output both
+a database and then output that data to a webpage. The data is output both
 as a list and chart. 
 
 Current Features

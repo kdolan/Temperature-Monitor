@@ -5,9 +5,9 @@ File: temp_WebServer.py
 Author: Kevin J Dolan
 Project: Live Temp Monitor
 Purpose: Bottle web server to manage loggin data from sensors to postgreSQL and
-to output data to webpage when requested. 
+to output data to webpage when requested.
 ***************************
-Imports: 
+Imports:
  bottle: WebFramework
  psycopg2: PostgreSQL framework
  sys
@@ -17,10 +17,10 @@ Imports:
 from bottle import route, run, template, get, post, request
 import psycopg2
 import sys
-import tempChartGen
+from temp_chartGen import *
 
 """
-GET: sensor1 and sensor2 
+GET: sensor1 and sensor2
 Store this data in postgeSQL database
 """
 @get('/tempMonitor')
@@ -35,12 +35,17 @@ def logData():
     cur.execute(SQL)
     con.commit()
     con.close()
-@route('/liveTemp')
+
 """
 Loads webpage with list of temperatures and chart of temperatures.
 """
+@get('/liveTemp')
 def viewData():
-    chartGen.genChart()
+    limit = request.GET.get('limit')
+    if(limit!=None):
+        genChart(limit)
+    else:
+        genChart()
     try:
         con = psycopg2.connect(database='tempStats', user='user')
         cur = con.cursor()
@@ -66,5 +71,5 @@ def viewData():
 
 
 
-run(host='sever.host.com', port=8080)
+run(host='server.host.com', port=8080)
 
